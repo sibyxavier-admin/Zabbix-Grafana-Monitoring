@@ -8,7 +8,7 @@
 ![ICMP](https://img.shields.io/badge/ICMP-Availability-purple)
 ![Monitoring](https://img.shields.io/badge/Infrastructure-Monitoring-blue)
 
-> 🚀 A production-grade centralized IT infrastructure monitoring platform built and deployed across a live campus network — providing real-time visibility, proactive alerting, and centralized dashboards.
+> 🚀 A production-grade centralized IT infrastructure monitoring platform built and deployed across a live campus network  providing real-time visibility, proactive alerting, and centralized dashboards.
 
 ---
 
@@ -38,7 +38,7 @@ The monitoring platform covers:
 - 🖥️ Windows & Linux Servers
 - 🔀 L1/L2/L3 Netgear Switches
 - 📡 Wireless Access Points
-- 🖨️ Network Printers — Brother, HP, Ricoh, Konica Minolta
+- 🖨️ Network Printers , Brother, HP, Ricoh, Konica Minolta
 - 📹 Hikvision & Prama IP Cameras
 - 🔥 Firewalls
 - 🌐 Internet Uplinks & Load-Balancing Status
@@ -94,15 +94,15 @@ The monitoring platform covers:
 ```
 ---
 ⚙️ Setup Guide
-Step 1 — Prepare the Linux Server
+Step 1  Prepare the Linux Server
 Install a fresh Linux server (Ubuntu recommended) that will host Zabbix Server, the SQL database, and the web frontend.
-Step 2 — Install SQL Database
+Step 2  Install SQL Database
 Install and configure the database (MySQL/MariaDB) that Zabbix will use to store configuration and historical monitoring data.
-Step 3 — Install Zabbix Server & Frontend
+Step 3  Install Zabbix Server & Frontend
 Install the Zabbix Server package, connect it to the SQL database, and set up the Zabbix web frontend for configuration and monitoring views.
-Step 4 — Configure SMTP for Alerts
+Step 4  Configure SMTP for Alerts
 Set up email notifications so Zabbix can send alerts automatically when a problem is detected.
-Step 5 — Install Zabbix Agent on Servers
+Step 5  Install Zabbix Agent on Servers
 Install the Zabbix Agent on every Linux/Windows server you want to monitor at the OS level.
 ```bash
 sudo nano /etc/zabbix/zabbix_agentd.conf
@@ -111,14 +111,14 @@ Typical metrics collected:
 CPU / Memory / Disk utilization
 Disk I/O & network throughput
 System uptime & running processes
-Step 6 — Add Servers in Zabbix
+Step 6  Add Servers in Zabbix
 In the Zabbix Web UI:
 Data Collection → Hosts → Create Host
 Enter hostname + select Host Group
 Add the server IP under Agent Interface
 Link the Zabbix Agent template
 Click Add, then verify under Monitoring → Latest Data
-Step 7 — Add Network Devices via SNMP
+Step 7  Add Network Devices via SNMP
 Used for switches, APs, printers, UPS, firewalls, and other SNMP-enabled gear.
 Before adding a device, confirm:
 SNMP is enabled on the device with the correct version (v2c/v3)
@@ -126,13 +126,13 @@ Zabbix Server can reach the device over UDP 161
 Correct SNMP credentials are available
 In Zabbix: `Data Collection → Hosts → Create Host` → set Host Name, Host Group, SNMP Interface, IP, Port 161, SNMP version/credentials → link the SNMP template.
 > 🔒 **Security note:** Never commit real SNMP community strings or SNMPv3 credentials. Use placeholders like `<SNMP_COMMUNITY>`.
-Step 8 — ICMP Ping Monitoring
+Step 8  ICMP Ping Monitoring
 For simple up/down reachability on devices where SNMP isn't available or needed (switches, printers, cameras, firewalls):
 ```text
 Device Reachable   →  UP
 Device Unreachable →  DOWN
 ```
-Step 9 — Host Groups & Templates
+Step 9  Host Groups & Templates
 Organize devices logically and reuse monitoring configs:
 Example Host Groups: Linux Servers, Windows Servers, Network Switches, Wireless APs, Printers, Firewalls, CCTV Infrastructure
 Example Template Stack per host:
@@ -145,22 +145,22 @@ Host
         ├── Interface Traffic
         └── Port Status
 ```
-Step 10 — Verify Monitoring
-Data Collection → Hosts — confirm host is enabled and reachable
-Monitoring → Latest Data — confirm values are populating
-Monitoring → Problems — check for active issues
+Step 10  Verify Monitoring
+Data Collection → Hosts  confirm host is enabled and reachable
+Monitoring → Latest Data  confirm values are populating
+Monitoring → Problems  check for active issues
 Confirm the correct template is linked on each host
-Step 11 — Install Grafana
+Step 11  Install Grafana
 ```bash
 sudo systemctl status grafana-server
 ```
 Follow the official Grafana docs for your distro to add the repo, install, and enable the service on boot.
-Step 12 — Connect Grafana to Zabbix
+Step 12  Connect Grafana to Zabbix
 ```text
 Zabbix Server → Zabbix API → Grafana Zabbix Data Source → Grafana Dashboard
 ```
 Add the Zabbix data source plugin in Grafana and point it to your Zabbix API URL + credentials.
-Step 13 — Build the Dashboard
+Step 13  Build the Dashboard
 Recommended panels:
 ```text
 ┌─────────────────────────────────────────────┐
@@ -189,7 +189,7 @@ Test Device → Unreachable → Zabbix Detects Failure → Trigger Fires → Pro
 🔒 Security Best Practices
 Zabbix
 Strong admin passwords + role-based access control
-Separate accounts per admin, least-privilege permissions
+Separate accounts per admin, least privilege permissions
 HTTPS on the web interface, restrict access, keep Zabbix updated
 SNMP
 Prefer SNMPv3 where the device supports it
@@ -215,8 +215,8 @@ Use placeholders instead:
 ```
 ---
 ✅ Result
-A single Grafana dashboard now gives real-time visibility across the entire campus network — servers, switches, printers, and cameras — with automated email alerts firing the moment a device goes down. Troubleshooting that used to mean checking device-by-device now starts with one dashboard.
+"A single Grafana dashboard now gives real-time visibility across the entire *enterprise infrastructure* - servers, switches, printers, and cameras..."
 ---
 🙌 Credits
-Built and documented by [Your Name] — IT Network & System Administrator.
+Built and documented by SIBY XAVIER IT Network & System Administrator.
 Feel free to fork this repo and adapt the setup for your own infrastructure!
